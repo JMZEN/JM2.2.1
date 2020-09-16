@@ -27,7 +27,7 @@ public class MainApp {
         user2.setCar(car2);
         User user3 = new User("User3", "Lastname3", "user3@mail.ru");
         user3.setCar(car3);
-        User user4 = new User("User1", "Lastname1", "user1@mail.ru");
+        User user4 = new User("User4", "Lastname1", "user1@mail.ru");
         user4.setCar(car4);
 
         userService.add(user1);
@@ -37,6 +37,7 @@ public class MainApp {
 
         printUsersList();
 
+        System.out.println(userService.getUserByCar(1, 111));
         context.close();
     }
 
