@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @Column(name = "car_id")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -18,6 +18,12 @@ public class Car {
     private int series;
 
     public Car() {
+
+    }
+
+    public Car(String name, int series) {
+        this.name = name;
+        this.series = series;
     }
 
     public int getId() {
