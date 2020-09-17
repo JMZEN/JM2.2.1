@@ -15,7 +15,7 @@ public class MainApp {
 
     static UserService userService = context.getBean(UserService.class);
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         Car car1 = new Car("BMW", 111);
         Car car2 = new Car("Lada", 222);
         Car car3 = new Car("XXX", 333);
@@ -38,6 +38,10 @@ public class MainApp {
         printUsersList();
 
         System.out.println(userService.getUserByCar(1, 111));
+        userService.deleteUserById(2);
+        userService.deleteCarById(3);
+
+        userService.cleanTables();
         context.close();
     }
 

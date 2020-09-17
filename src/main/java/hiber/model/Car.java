@@ -9,7 +9,7 @@ public class Car {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "car_name", length = 30)
     private String name;
@@ -20,7 +20,6 @@ public class Car {
     @OneToOne(mappedBy = "car",
             cascade = {CascadeType.DETACH, CascadeType.MERGE,
                     CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn
     private User user;
 
     public Car() {
@@ -32,11 +31,11 @@ public class Car {
         this.series = series;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

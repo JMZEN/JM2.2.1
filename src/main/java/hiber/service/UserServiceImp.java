@@ -29,32 +29,32 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User getUserByCar(int carId, int carSeries) {
+    public User getUserByCar(long carId, int carSeries) {
         return userDao.getUserByCar(carId, carSeries);
     }
 
     @Override
-    public User getUserByUserId(int id) {
+    public User getUserByUserId(long id) {
         return userDao.getUserByUserId(id);
     }
 
     @Override
-    public void updateUser(int id) {
+    public void updateUser(long id) {
         userDao.updateUser(id);
     }
 
     @Override
-    public void updateCar(int id) {
+    public void updateCar(long id) {
         userDao.updateCar(id);
     }
 
     @Override
-    public void deleteUserById(int id) {
+    public void deleteUserById(long id) {
         userDao.deleteUserById(id);
     }
 
     @Override
-    public void deleteCarById(int id) {
+    public void deleteCarById(long id) {
         userDao.deleteCarById(id);
     }
 

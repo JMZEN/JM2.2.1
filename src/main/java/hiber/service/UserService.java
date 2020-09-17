@@ -10,17 +10,17 @@ public interface UserService {
 
     List<User> listUsers();
 
-    User getUserByCar(int carId, int carSeries);
+    User getUserByCar(long carId, int carSeries);
 
-    User getUserByUserId(int id);
+    User getUserByUserId(long id);
 
-    void updateUser(int id);
+    void updateUser(long id);
 
-    void updateCar(int id);
+    void updateCar(long id);
 
-    void deleteUserById(int id);
+    void deleteUserById(long id);
 
-    void deleteCarById(int id);
+    void deleteCarById(long id);
 
     void cleanTables();
 }
