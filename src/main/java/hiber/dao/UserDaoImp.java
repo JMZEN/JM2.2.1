@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +50,9 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User getUserByUserId(long id) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        Optional<User> optionalUser = Optional.ofNullable(session.get(User.class, id));
+        return optionalUser.orElse(emptyUser);
     }
 
     @Override
@@ -97,7 +100,7 @@ public class UserDaoImp implements UserDao {
         Optional<Car> optionalCar =
                 Optional.ofNullable(session.get(Car.class, id));
         Car foundForDeleteCar = optionalCar.orElse(emptyCar);
-        foundForDeleteCar.getUser().setCar(null);
+        foundForDeleteCar.getUser().setCar(emptyCar);
 
         session.delete(foundForDeleteCar);
     }
@@ -106,5 +109,11 @@ public class UserDaoImp implements UserDao {
     public void cleanTables() {
         sessionFactory.getCurrentSession().createQuery("DELETE FROM User").executeUpdate();
         sessionFactory.getCurrentSession().createQuery("DELETE FROM Car").executeUpdate();
+    }
+
+    public void deleteTables() {
+        Session session = sessionFactory.getCurrentSession();
+        session.createSQLQuery("DROP TABLE IF EXISTS users").executeUpdate();
+        session.createSQLQuery("DROP TABLE IF EXISTS car").executeUpdate();
     }
 }

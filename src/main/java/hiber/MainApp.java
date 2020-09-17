@@ -42,32 +42,38 @@ public class MainApp {
 
         // (Read) Поиск по Car
         System.out.println(userService.getUserByCar(1, 111));
+        System.out.println(userService.getUserByUserId(1));
 
         // (Update) Обновление User / Car
         userService.updateUser(1, new User("Max", "Maximov", "max@ya.ru"));
         userService.updateCar(4, new Car("Audi", 777));
 
         // (Delete) Удаление пользователя по Id(удаляется также машина)
-        // (Delete) Удаление машины(пользоваель не удаляется)
         userService.deleteUserById(2);
-        userService.deleteCarById(3);
 
-//        userService.cleanTables();
+        userService.cleanTables();
+        userService.deleteTables();
+
+        printUsersList();
         context.close();
     }
 
     private static void printUsersList() {
         Car emptyCar = new Car();
-        List<User> users = userService.listUsers();
-        for (User user : users) {
-            Optional<Car> carOptional = Optional.ofNullable(user.getCar());
-            Car car = carOptional.orElse(emptyCar);
-            System.out.println("Id = " + user.getId());
-            System.out.println("First Name = " + user.getFirstName());
-            System.out.println("Last Name = " + user.getLastName());
-            System.out.println("Email = " + user.getEmail());
-            System.out.println("Car = " + car.toString());
-            System.out.println();
+
+        try {
+            List<User> users = userService.listUsers();
+            for (User user : users) {
+                Optional<Car> carOptional = Optional.ofNullable(user.getCar());
+                Car car = carOptional.orElse(emptyCar);
+                System.out.println("Id = " + user.getId());
+                System.out.println("First Name = " + user.getFirstName());
+                System.out.println("Last Name = " + user.getLastName());
+                System.out.println("Email = " + user.getEmail());
+                System.out.println("Car = " + car.toString());
+                System.out.println();
+            }
+        } catch (Exception ignored) {
         }
     }
 }

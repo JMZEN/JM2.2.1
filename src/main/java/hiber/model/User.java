@@ -19,7 +19,7 @@ public class User {
     @Column(name = "email", length = 45)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 

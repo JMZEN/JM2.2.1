@@ -63,4 +63,9 @@ public class UserServiceImp implements UserService {
         userDao.cleanTables();
     }
 
+    @Override
+    public void deleteTables() {
+        userDao.deleteTables();
+    }
+
 }

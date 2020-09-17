@@ -23,4 +23,6 @@ public interface UserService {
     void deleteCarById(long id);
 
     void cleanTables();
+
+    void deleteTables();
 }

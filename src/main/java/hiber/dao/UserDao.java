@@ -23,4 +23,6 @@ public interface UserDao {
     void deleteCarById(long id);
 
     void cleanTables();
+
+    void deleteTables();
 }
