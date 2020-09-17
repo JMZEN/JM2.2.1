@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class MainApp {
     static final AnnotationConfigApplicationContext context =
@@ -30,29 +31,42 @@ public class MainApp {
         User user4 = new User("User4", "Lastname1", "user1@mail.ru");
         user4.setCar(car4);
 
+        // (Create) Добавление 4 User + Car
         userService.add(user1);
         userService.add(user2);
         userService.add(user3);
         userService.add(user4);
 
+        // (Read) Вывод Users
         printUsersList();
 
+        // (Read) Поиск по Car
         System.out.println(userService.getUserByCar(1, 111));
+
+        // (Update) Обновление User / Car
+        userService.updateUser(1, new User("Max", "Maximov", "max@ya.ru"));
+        userService.updateCar(4, new Car("Audi", 777));
+
+        // (Delete) Удаление пользователя по Id(удаляется также машина)
+        // (Delete) Удаление машины(пользоваель не удаляется)
         userService.deleteUserById(2);
         userService.deleteCarById(3);
 
-        userService.cleanTables();
+//        userService.cleanTables();
         context.close();
     }
 
     private static void printUsersList() {
+        Car emptyCar = new Car();
         List<User> users = userService.listUsers();
         for (User user : users) {
+            Optional<Car> carOptional = Optional.ofNullable(user.getCar());
+            Car car = carOptional.orElse(emptyCar);
             System.out.println("Id = " + user.getId());
             System.out.println("First Name = " + user.getFirstName());
             System.out.println("Last Name = " + user.getLastName());
             System.out.println("Email = " + user.getEmail());
-            System.out.println("Car = " + user.getCar().toString());
+            System.out.println("Car = " + car.toString());
             System.out.println();
         }
     }

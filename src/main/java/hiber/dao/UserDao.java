@@ -14,9 +14,9 @@ public interface UserDao {
 
     User getUserByUserId(long id);
 
-    void updateUser(long id);
+    void updateUser(long id, User user);
 
-    void updateCar(long id);
+    void updateCar(long id, Car car);
 
     void deleteUserById(long id);
 

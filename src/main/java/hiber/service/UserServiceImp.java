@@ -39,13 +39,13 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void updateUser(long id) {
-        userDao.updateUser(id);
+    public void updateUser(long id, User user) {
+        userDao.updateUser(id, user);
     }
 
     @Override
-    public void updateCar(long id) {
-        userDao.updateCar(id);
+    public void updateCar(long id, Car car) {
+        userDao.updateCar(id, car);
     }
 
     @Override

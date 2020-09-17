@@ -53,20 +53,38 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void updateUser(long id) {
+    public void updateUser(long id, User user) {
+        Session session = sessionFactory.getCurrentSession();
 
+        Optional<User> optionalUser =
+                Optional.ofNullable(session.get(User.class, id));
+        User foundForUpdateUser = optionalUser.orElse(emptyUser);
+        foundForUpdateUser.setEmail(user.getEmail());
+        foundForUpdateUser.setFirstName(user.getFirstName());
+        foundForUpdateUser.setLastName(user.getLastName());
+
+        session.update(foundForUpdateUser);
     }
 
     @Override
-    public void updateCar(long id) {
+    public void updateCar(long id, Car car) {
+        Session session = sessionFactory.getCurrentSession();
 
+        Optional<Car> optionalCar =
+                Optional.ofNullable(session.get(Car.class, id));
+        Car foundForUpdateCar = optionalCar.orElse(emptyCar);
+        foundForUpdateCar.setName(car.getName());
+        foundForUpdateCar.setSeries(car.getSeries());
+
+        session.update(foundForUpdateCar);
     }
 
     @Override
     public void deleteUserById(long id) {
         Session session = sessionFactory.getCurrentSession();
 
-        Optional<User> optionalUser = Optional.ofNullable(session.get(User.class, id));
+        Optional<User> optionalUser =
+                Optional.ofNullable(session.get(User.class, id));
         User foundForDeleteUser = optionalUser.orElse(emptyUser);
 
         session.delete(foundForDeleteUser);
@@ -76,7 +94,8 @@ public class UserDaoImp implements UserDao {
     public void deleteCarById(long id) {
         Session session = sessionFactory.getCurrentSession();
 
-        Optional<Car> optionalCar = Optional.ofNullable(session.get(Car.class, id));
+        Optional<Car> optionalCar =
+                Optional.ofNullable(session.get(Car.class, id));
         Car foundForDeleteCar = optionalCar.orElse(emptyCar);
         foundForDeleteCar.getUser().setCar(null);
 
