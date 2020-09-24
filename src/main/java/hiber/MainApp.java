@@ -3,10 +3,10 @@ package hiber;
 import hiber.config.AppConfig;
 import hiber.model.Car;
 import hiber.model.User;
-import hiber.service.UserService;
+import hiber.service.carservice.CarService;
+import hiber.service.userservice.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +15,7 @@ public class MainApp {
             new AnnotationConfigApplicationContext(AppConfig.class);
 
     static UserService userService = context.getBean(UserService.class);
+    static CarService carService = context.getBean(CarService.class);
 
     public static void main(String[] args) {
         Car car1 = new Car("BMW", 111);
@@ -41,12 +42,12 @@ public class MainApp {
         printUsersList();
 
         // (Read) Поиск по Car
-        System.out.println(userService.getUserByCar(1, 111));
+        System.out.println(userService.getUserByCar(22, 111));
         System.out.println(userService.getUserByUserId(1));
 
         // (Update) Обновление User / Car
         userService.updateUser(1, new User("Max", "Maximov", "max@ya.ru"));
-        userService.updateCar(4, new Car("Audi", 777));
+        carService.updateCar(4, new Car("Audi", 777));
 
         // (Delete) Удаление пользователя по Id(удаляется также машина)
         userService.deleteUserById(2);

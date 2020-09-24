@@ -1,5 +1,6 @@
-package hiber.service;
+package hiber.service.userservice;
 
+import hiber.dao.CarDao;
 import hiber.dao.UserDao;
 import hiber.model.Car;
 import hiber.model.User;
@@ -16,7 +17,6 @@ public class UserServiceImp implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Transactional
     @Override
     public void add(User user) {
         userDao.add(user);
@@ -44,19 +44,10 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void updateCar(long id, Car car) {
-        userDao.updateCar(id, car);
-    }
-
-    @Override
     public void deleteUserById(long id) {
         userDao.deleteUserById(id);
     }
 
-    @Override
-    public void deleteCarById(long id) {
-        userDao.deleteCarById(id);
-    }
 
     @Override
     public void cleanTables() {

@@ -16,11 +16,7 @@ public interface UserDao {
 
     void updateUser(long id, User user);
 
-    void updateCar(long id, Car car);
-
     void deleteUserById(long id);
-
-    void deleteCarById(long id);
 
     void cleanTables();
 

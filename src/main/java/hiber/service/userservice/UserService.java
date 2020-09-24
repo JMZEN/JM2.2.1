@@ -1,4 +1,4 @@
-package hiber.service;
+package hiber.service.userservice;
 
 import hiber.model.Car;
 import hiber.model.User;
@@ -16,11 +16,7 @@ public interface UserService {
 
     void updateUser(long id, User user);
 
-    void updateCar(long id, Car car);
-
     void deleteUserById(long id);
-
-    void deleteCarById(long id);
 
     void cleanTables();
 
