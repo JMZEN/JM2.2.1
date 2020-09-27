@@ -1,6 +1,6 @@
 package hiber.service.carservice;
 
-import hiber.dao.CarDao;
+import hiber.dao.cardao.CarDao;
 import hiber.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +20,15 @@ public class CarServiceImp implements CarService {
     @Override
     public void deleteCarById(long id) {
         carDao.deleteCarById(id);
+    }
+
+    @Override
+    public void cleanCarTable() {
+        carDao.cleanCarTable();
+    }
+
+    @Override
+    public void deleteCarTable() {
+        carDao.deleteCarTable();
     }
 }

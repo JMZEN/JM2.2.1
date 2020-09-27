@@ -18,7 +18,7 @@ public interface UserService {
 
     void deleteUserById(long id);
 
-    void cleanTables();
+    void cleanUserTable();
 
-    void deleteTables();
+    void deleteUserTable();
 }

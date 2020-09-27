@@ -1,8 +1,6 @@
 package hiber.service.userservice;
 
-import hiber.dao.CarDao;
-import hiber.dao.UserDao;
-import hiber.model.Car;
+import hiber.dao.userdao.UserDao;
 import hiber.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,13 +48,13 @@ public class UserServiceImp implements UserService {
 
 
     @Override
-    public void cleanTables() {
-        userDao.cleanTables();
+    public void cleanUserTable() {
+        userDao.cleanUserTable();
     }
 
     @Override
-    public void deleteTables() {
-        userDao.deleteTables();
+    public void deleteUserTable() {
+        userDao.deleteUserTable();
     }
 
 }

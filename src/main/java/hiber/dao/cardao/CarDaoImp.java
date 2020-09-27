@@ -1,4 +1,4 @@
-package hiber.dao;
+package hiber.dao.cardao;
 
 import hiber.model.Car;
 import org.hibernate.Session;
@@ -38,5 +38,17 @@ public class CarDaoImp implements CarDao {
         foundForDeleteCar.getUser().setCar(emptyCar);
 
         session.delete(foundForDeleteCar);
+    }
+
+    @Override
+    public void cleanCarTable() {
+        Session session = sessionFactory.getCurrentSession();
+        session.createQuery("DELETE FROM Car").executeUpdate();
+    }
+
+    @Override
+    public void deleteCarTable() {
+        Session session = sessionFactory.getCurrentSession();
+        session.createSQLQuery("DROP TABLE IF EXISTS car").executeUpdate();
     }
 }

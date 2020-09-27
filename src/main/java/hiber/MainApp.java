@@ -52,8 +52,10 @@ public class MainApp {
         // (Delete) Удаление пользователя по Id(удаляется также машина)
         userService.deleteUserById(2);
 
-        userService.cleanTables();
-        userService.deleteTables();
+        userService.cleanUserTable();
+        carService.cleanCarTable();
+        userService.deleteUserTable();
+        carService.deleteCarTable();
 
         printUsersList();
         context.close();
