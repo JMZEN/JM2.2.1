@@ -13,6 +13,11 @@ public class CarServiceImp implements CarService {
     private CarDao carDao;
 
     @Override
+    public Car getCarId(long id) {
+        return carDao.getCarId(id);
+    }
+
+    @Override
     public void updateCar(long id, Car car) {
         carDao.updateCar(id, car);
     }

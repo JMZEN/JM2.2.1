@@ -65,8 +65,9 @@ public class UserDaoImp implements UserDao {
             foundForUpdateUser.setFirstName(user.getFirstName());
             foundForUpdateUser.setLastName(user.getLastName());
             session.update(foundForUpdateUser);
+        } else {
+            System.out.println("Пользователь для обновления не найден");
         }
-        System.out.println("Пользователь для обновления не найден");
     }
 
     @Override
@@ -78,8 +79,9 @@ public class UserDaoImp implements UserDao {
         if (optionalUser.isPresent()) {
             User foundForDeleteUser = optionalUser.orElse(emptyUser);
             session.delete(foundForDeleteUser);
+        } else {
+            System.out.println("Пользователь для удаления не найден");
         }
-        System.out.println("Пользователь для удаления не найден");
     }
 
     @Override

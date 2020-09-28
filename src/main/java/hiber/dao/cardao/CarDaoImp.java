@@ -1,6 +1,7 @@
 package hiber.dao.cardao;
 
 import hiber.model.Car;
+import hiber.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,13 @@ public class CarDaoImp implements CarDao {
     private SessionFactory sessionFactory;
 
     @Override
+    public Car getCarId(long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Optional<Car> optionalUser = Optional.ofNullable(session.get(Car.class, id));
+        return optionalUser.orElse(emptyCar);
+    }
+
+    @Override
     public void updateCar(long id, Car car) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -26,8 +34,9 @@ public class CarDaoImp implements CarDao {
             foundForUpdateCar.setName(car.getName());
             foundForUpdateCar.setSeries(car.getSeries());
             session.update(foundForUpdateCar);
+        } else {
+            System.out.println("Машина для обновления не найдена");
         }
-        System.out.println("Машина для обновления не найдена");
     }
 
     @Override
@@ -40,8 +49,9 @@ public class CarDaoImp implements CarDao {
             Car foundForDeleteCar = optionalCar.orElse(emptyCar);
             foundForDeleteCar.getUser().setCar(null);
             session.delete(foundForDeleteCar);
+        } else {
+            System.out.println("Машина для удаления не найдена");
         }
-        System.out.println("Машина для удаления не найдена");
     }
 
     @Override

@@ -41,22 +41,23 @@ public class MainApp {
         // (Read) Вывод Users
         printUsersList();
 
-        // (Read) Поиск по Car
-        System.out.println(userService.getUserByCar(22, 111));
-        System.out.println(userService.getUserByUserId(1));
+        // (Read) Поиск по Car или User
+//        System.out.println(carService.getCarId(1));
+//        System.out.println(userService.getUserByCar(2, 222));
+//        System.out.println(userService.getUserByUserId(1));
 
         // (Update) Обновление User / Car
-        userService.updateUser(12, new User("Max", "Maximov", "max@ya.ru"));
-        carService.updateCar(10, new Car("Audi", 777));
+        userService.updateUser(1, new User("Max", "Maximov", "max@ya.ru"));
+        carService.updateCar(2, new Car("Audi", 777));
 
         // (Delete) Удаление пользователя по Id(удаляется также машина)
         userService.deleteUserById(3);
         carService.deleteCarById(4);
 
-//        userService.cleanUserTable();
-//        carService.cleanCarTable();
-//        userService.deleteUserTable();
-//        carService.deleteCarTable();
+        userService.cleanUserTable();
+        carService.cleanCarTable();
+        userService.deleteUserTable();
+        carService.deleteCarTable();
 
         printUsersList();
         context.close();
