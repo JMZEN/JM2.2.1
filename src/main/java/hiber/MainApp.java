@@ -42,9 +42,9 @@ public class MainApp {
         printUsersList();
 
         // (Read) Поиск по Car или User
-//        System.out.println(carService.getCarId(1));
-//        System.out.println(userService.getUserByCar(2, 222));
-//        System.out.println(userService.getUserByUserId(1));
+        System.out.println(carService.getCarId(1));
+        System.out.println(userService.getUserByCar(2, 222));
+        System.out.println(userService.getUserByUserId(1));
 
         // (Update) Обновление User / Car
         userService.updateUser(1, new User("Max", "Maximov", "max@ya.ru"));
