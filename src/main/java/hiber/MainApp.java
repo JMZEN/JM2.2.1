@@ -47,15 +47,16 @@ public class MainApp {
 
         // (Update) Обновление User / Car
         userService.updateUser(1, new User("Max", "Maximov", "max@ya.ru"));
-        carService.updateCar(4, new Car("Audi", 777));
+        carService.updateCar(10, new Car("Audi", 777));
 
         // (Delete) Удаление пользователя по Id(удаляется также машина)
-        userService.deleteUserById(2);
+        userService.deleteUserById(3);
+        carService.deleteCarById(4);
 
-        userService.cleanUserTable();
-        carService.cleanCarTable();
-        userService.deleteUserTable();
-        carService.deleteCarTable();
+//        userService.cleanUserTable();
+//        carService.cleanCarTable();
+//        userService.deleteUserTable();
+//        carService.deleteCarTable();
 
         printUsersList();
         context.close();

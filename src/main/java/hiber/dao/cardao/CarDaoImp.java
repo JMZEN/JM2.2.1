@@ -32,12 +32,12 @@ public class CarDaoImp implements CarDao {
     public void deleteCarById(long id) {
         Session session = sessionFactory.getCurrentSession();
 
-        Optional<Car> optionalCar =
-                Optional.ofNullable(session.get(Car.class, id));
-        Car foundForDeleteCar = optionalCar.orElse(emptyCar);
-        foundForDeleteCar.getUser().setCar(emptyCar);
-
-        session.delete(foundForDeleteCar);
+        Car foundForDeleteCar = session.get(Car.class, id);
+        if (foundForDeleteCar != null) {
+            foundForDeleteCar.getUser().setCar(null);
+            session.delete(foundForDeleteCar);
+        }
+        System.out.println("Машина для удаления не найдена");
     }
 
     @Override
