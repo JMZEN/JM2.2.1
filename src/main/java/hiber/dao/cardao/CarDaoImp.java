@@ -21,19 +21,23 @@ public class CarDaoImp implements CarDao {
 
         Optional<Car> optionalCar =
                 Optional.ofNullable(session.get(Car.class, id));
-        Car foundForUpdateCar = optionalCar.orElse(emptyCar);
-        foundForUpdateCar.setName(car.getName());
-        foundForUpdateCar.setSeries(car.getSeries());
-
-        session.update(foundForUpdateCar);
+        if (optionalCar.isPresent()) {
+            Car foundForUpdateCar = optionalCar.orElse(emptyCar);
+            foundForUpdateCar.setName(car.getName());
+            foundForUpdateCar.setSeries(car.getSeries());
+            session.update(foundForUpdateCar);
+        }
+        System.out.println("Машина для обновления не найдена");
     }
 
     @Override
     public void deleteCarById(long id) {
         Session session = sessionFactory.getCurrentSession();
 
-        Car foundForDeleteCar = session.get(Car.class, id);
-        if (foundForDeleteCar != null) {
+        Optional<Car> optionalCar =
+                Optional.ofNullable(session.get(Car.class, id));
+        if (optionalCar.isPresent()) {
+            Car foundForDeleteCar = optionalCar.orElse(emptyCar);
             foundForDeleteCar.getUser().setCar(null);
             session.delete(foundForDeleteCar);
         }

@@ -1,5 +1,6 @@
 package hiber.dao.userdao;
 
+import hiber.model.Car;
 import hiber.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,12 +59,14 @@ public class UserDaoImp implements UserDao {
 
         Optional<User> optionalUser =
                 Optional.ofNullable(session.get(User.class, id));
-        User foundForUpdateUser = optionalUser.orElse(emptyUser);
-        foundForUpdateUser.setEmail(user.getEmail());
-        foundForUpdateUser.setFirstName(user.getFirstName());
-        foundForUpdateUser.setLastName(user.getLastName());
-
-        session.update(foundForUpdateUser);
+        if (optionalUser.isPresent()) {
+            User foundForUpdateUser = optionalUser.orElse(emptyUser);
+            foundForUpdateUser.setEmail(user.getEmail());
+            foundForUpdateUser.setFirstName(user.getFirstName());
+            foundForUpdateUser.setLastName(user.getLastName());
+            session.update(foundForUpdateUser);
+        }
+        System.out.println("Пользователь для обновления не найден");
     }
 
     @Override
@@ -72,19 +75,19 @@ public class UserDaoImp implements UserDao {
 
         Optional<User> optionalUser =
                 Optional.ofNullable(session.get(User.class, id));
-        User foundForDeleteUser = optionalUser.orElse(emptyUser);
-
-        session.delete(foundForDeleteUser);
+        if (optionalUser.isPresent()) {
+            User foundForDeleteUser = optionalUser.orElse(emptyUser);
+            session.delete(foundForDeleteUser);
+        }
+        System.out.println("Пользователь для удаления не найден");
     }
 
     @Override
     public void cleanUserTable() {
-//        Session session = sessionFactory.getCurrentSession();
         sessionFactory.getCurrentSession().createQuery("DELETE FROM User").executeUpdate();
     }
 
     public void deleteUserTable() {
-//        Session session = sessionFactory.getCurrentSession();
         sessionFactory.getCurrentSession().createSQLQuery("DROP TABLE IF EXISTS users").executeUpdate();
     }
 }

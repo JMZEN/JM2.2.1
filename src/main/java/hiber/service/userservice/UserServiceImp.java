@@ -56,5 +56,4 @@ public class UserServiceImp implements UserService {
     public void deleteUserTable() {
         userDao.deleteUserTable();
     }
-
 }

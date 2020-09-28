@@ -46,7 +46,7 @@ public class MainApp {
         System.out.println(userService.getUserByUserId(1));
 
         // (Update) Обновление User / Car
-        userService.updateUser(1, new User("Max", "Maximov", "max@ya.ru"));
+        userService.updateUser(12, new User("Max", "Maximov", "max@ya.ru"));
         carService.updateCar(10, new Car("Audi", 777));
 
         // (Delete) Удаление пользователя по Id(удаляется также машина)
